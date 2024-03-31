@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Bsn"
 include(":app")
- 
+include(":kakaologin")
