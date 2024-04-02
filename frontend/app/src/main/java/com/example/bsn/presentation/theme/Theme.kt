@@ -3,13 +3,13 @@ package com.example.bsn.presentation.theme
 import android.widget.Button
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import androidx.wear.compose.material.MaterialTheme
-import androidx.wear.compose.material.MaterialTheme.typography
-import androidx.wear.compose.material.Shapes
-import androidx.wear.compose.material.Typography
 
 
 
@@ -31,7 +31,6 @@ fun BsnTheme(
 }
 
 val Typography = Typography(
-    body1 = androidx.compose.ui.text.TextStyle(),
 
 )
 
