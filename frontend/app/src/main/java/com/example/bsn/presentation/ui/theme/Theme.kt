@@ -37,7 +37,14 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+@Composable
+fun mainpageTheme(
 
+
+)
+{
+
+}
 @Composable
 fun BsnTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

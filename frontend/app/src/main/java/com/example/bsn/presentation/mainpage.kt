@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 
 import com.example.bsn.presentation.theme.BsnTheme
@@ -37,6 +38,7 @@ class mainpage : ComponentActivity() {
         setContent {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(),
+                    shape = CircleShape,
                     color = Color.Black) {
                    MainPage()
                 }
