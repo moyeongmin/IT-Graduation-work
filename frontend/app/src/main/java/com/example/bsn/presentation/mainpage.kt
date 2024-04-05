@@ -27,21 +27,26 @@ import androidx.compose.ui.unit.sp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import androidx.wear.compose.material.MaterialTheme.colors
 import androidx.wear.compose.material.PositionIndicator
-import androidx.wear.compose.material.TimeText
-import androidx.wear.compose.material.Vignette
-import androidx.wear.compose.material.VignettePosition
+
 import com.example.bsn.R
+import com.example.bsn.presentation.ui.theme.MainpageTheme
 
 class mainpage : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            MainpageTheme {
+
+
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(),
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
                     shape = CircleShape,
-                    color = Color.Black) {
-                   MainPage()
+                    color = Color.Black
+                ) {
+                    MainPage()
                 }
+            }
         }
     }
 }
@@ -66,20 +71,13 @@ fun MainPage() {
         content = { paddingValues ->
             ScalingLazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
                     .padding(paddingValues),
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(bottom = 32.dp)
+                contentPadding = PaddingValues(bottom = 4.dp)
             ) {
                 item {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        TimeText()
-                        Vignette(vignettePosition = VignettePosition.TopAndBottom)
-                    }
+                   Timestamp()
                 }
                 item {
                     WelcomeMessage()
