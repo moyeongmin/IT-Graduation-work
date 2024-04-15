@@ -67,11 +67,6 @@ fun CustomImageButton(
             contentScale = ContentScale.Crop,
             modifier = Modifier
                 .matchParentSize() // 이미지를 Box 크기에 맞춥니다.
-                .graphicsLayer {
-
-
-                }
-
                 .pointerInput(Unit) {
                     detectTapGestures(
                         onPress = {
