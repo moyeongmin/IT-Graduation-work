@@ -1,23 +1,18 @@
 package com.example.bsn.presentation
 
 import android.os.Bundle
-import android.text.style.BackgroundColorSpan
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 
-import com.example.bsn.presentation.theme.BsnTheme
 
-
-import androidx.compose.material3.TabRowDefaults.Indicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 
 
@@ -25,10 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
-import androidx.wear.compose.material.MaterialTheme.colors
-import androidx.wear.compose.material.PositionIndicator
 
 import com.example.bsn.R
+import com.example.bsn.presentation.ui.CustomImageButton
 import com.example.bsn.presentation.ui.theme.MainpageTheme
 
 class mainpage : ComponentActivity() {
@@ -56,7 +50,7 @@ fun Greeting2(name: String, modifier: Modifier = Modifier) {
     )
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, device = "id:wearos_small_round")
 @Composable
 fun GreetingPreview() {
        MainPage()
@@ -65,19 +59,62 @@ fun GreetingPreview() {
 @Composable
 fun MainPage() {
     Scaffold(
+        containerColor = Color.Black,
         content = { paddingValues ->
             ScalingLazyColumn(
                 modifier = Modifier
                     .padding(paddingValues),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                contentPadding = PaddingValues(bottom = 4.dp)
+                contentPadding = PaddingValues(bottom = 10.dp)
             ) {
                 item {
                    Timestamp()
+                    Spacer(modifier = Modifier.padding(bottom = 5.dp))
                 }
                 item {
-                    WelcomeMessage()
+                    val username = "김세훈" // 유저 이름 받아오기
+                    Text(text = "${username}님, 반갑습니다!",
+                        color = Color.White,
+                        style = TextStyle(
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Bold,
+                        ),
+                    )
+                    Spacer(modifier = Modifier.padding(bottom = 30.dp))
+                }
+                item {
+                    CustomImageButton(
+                        defaultImagePainter = R.drawable.mainpage_gotowork,
+                        contentDescription = "goroworkbtn",
+                        onClick = { /*TODO*/ },
+                        widthratio = 1f,
+                        heightratio = 4f,
+                        text = "출근 설정",
+                        textsize = 12.sp,
+                        key = 1)
+                }
+                item {
+                    CustomImageButton(
+                        defaultImagePainter = R.drawable.mainpage_comebackhome,
+                        contentDescription = "comebackhomebtn",
+                        onClick = { /*TODO*/ },
+                        widthratio = 1f,
+                        heightratio = 4f,
+                        text = "퇴근 설정",
+                        textsize = 12.sp,
+                        key = 2)
+                }
+                item {
+                    CustomImageButton(
+                        defaultImagePainter = R.drawable.mainpage_options,
+                        contentDescription = "optionsbtn",
+                        onClick = { /*TODO*/ },
+                        widthratio = 1f,
+                        heightratio = 4f,
+                        text = "옵션",
+                        textsize = 12.sp,
+                        key = 2)
                 }
 //                item {
 //                    PermissionRequest()
@@ -88,47 +125,6 @@ fun MainPage() {
             }
         }
     )
-}
-
-@Composable
-fun WelcomeMessage() {
-    Card(
-        modifier = Modifier
-            .fillMaxSize()
-            .wrapContentHeight(),
-        colors = CardDefaults.cardColors(
-            containerColor = Color.Black,
-            contentColor = Color.White
-        )
-       // contentColor = Color.White
-    ) {
-        Column(
-            modifier = Modifier.padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            // Replace with your actual image resource
-            Image(
-                painter = painterResource(id = R.drawable.img),
-                contentDescription = "Welcome"
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "환영합니다! 갤럭시 워치!",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = "초록색 천체",
-                fontSize = 12.sp
-            )
-            Text(
-                text = "푸른 천체",
-                fontSize = 12.sp
-            )
-        }
-    }
 }
 
 @Composable
