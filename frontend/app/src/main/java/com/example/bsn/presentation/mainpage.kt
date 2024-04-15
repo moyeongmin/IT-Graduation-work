@@ -114,7 +114,7 @@ fun MainPage() {
                         heightratio = 4f,
                         text = "옵션",
                         textsize = 12.sp,
-                        key = 2)
+                        key = 3)
                 }
 //                item {
 //                    PermissionRequest()
