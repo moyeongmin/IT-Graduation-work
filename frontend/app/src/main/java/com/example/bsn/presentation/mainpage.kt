@@ -42,14 +42,6 @@ class mainpage : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true, device = "id:wearos_small_round")
 @Composable
 fun GreetingPreview() {
@@ -84,7 +76,7 @@ fun MainPage() {
                     Spacer(modifier = Modifier.padding(bottom = 30.dp))
                 }
                 item {
-                    CustomImageButton(
+                    CustomImageButton(//출근 설정으로 이동
                         defaultImagePainter = R.drawable.mainpage_gotowork,
                         contentDescription = "goroworkbtn",
                         onClick = { /*TODO*/ },
@@ -95,7 +87,7 @@ fun MainPage() {
                         key = 1)
                 }
                 item {
-                    CustomImageButton(
+                    CustomImageButton(//퇴근 설정으로 이동
                         defaultImagePainter = R.drawable.mainpage_comebackhome,
                         contentDescription = "comebackhomebtn",
                         onClick = { /*TODO*/ },
@@ -106,7 +98,7 @@ fun MainPage() {
                         key = 2)
                 }
                 item {
-                    CustomImageButton(
+                    CustomImageButton(//옵션 페이지로 이동
                         defaultImagePainter = R.drawable.mainpage_options,
                         contentDescription = "optionsbtn",
                         onClick = { /*TODO*/ },
