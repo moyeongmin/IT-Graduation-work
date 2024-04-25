@@ -1,5 +1,6 @@
 package com.example.bsn.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 
@@ -50,9 +52,11 @@ fun GreetingPreview() {
 
 @Composable
 fun MainPage() {
+    val context = LocalContext.current
     Scaffold(
         containerColor = Color.Black,
         content = { paddingValues ->
+            TimeText()
             ScalingLazyColumn(
                 modifier = Modifier
                     .padding(paddingValues),
@@ -60,10 +64,6 @@ fun MainPage() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 contentPadding = PaddingValues(bottom = 10.dp)
             ) {
-                item {
-                   Timestamp()
-                    Spacer(modifier = Modifier.padding(bottom = 5.dp))
-                }
                 item {
                     val username = "김세훈" // 유저 이름 받아오기
                     Text(text = "${username}님, 반갑습니다!",
@@ -79,7 +79,8 @@ fun MainPage() {
                     CustomImageButton(//출근 설정으로 이동
                         defaultImagePainter = R.drawable.mainpage_gotowork,
                         contentDescription = "goroworkbtn",
-                        onClick = { /*TODO*/ },
+                        onClick = { val i = Intent(context,Bus_Subway_Choose::class.java)
+                                  context.startActivity(i)},
                         widthratio = 1f,
                         heightratio = 4f,
                         text = "출근 설정",

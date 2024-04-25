@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import kotlin.reflect.typeOf
 
 @Composable
 fun CustomImageButton(
@@ -91,7 +92,8 @@ fun CustomImageButton(
                     fontSize = textsize,
                     fontWeight = FontWeight.Bold,
                 ),
-                modifier = Modifier.align(Alignment.CenterStart)
+                modifier = Modifier
+                    .align(Alignment.CenterStart)
                     .padding(start = 5.dp)
             )
         }

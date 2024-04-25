@@ -1,5 +1,7 @@
 package com.example.bsn.presentation
 
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,9 +22,9 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 @Composable
-fun TimeText() {
+fun TimeText(modifier: Modifier = Modifier) {
     val currentTime = LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
-    CurvedLayout(modifier = Modifier.height(20.dp)) {
+    CurvedLayout(modifier = modifier) {
         basicCurvedText(
             text = currentTime,
             style = CurvedTextStyle(
@@ -52,9 +54,8 @@ fun Timestamp(modifier: Modifier = Modifier) {
     )
 }
 
-@Preview
+@Preview(device = "id:pixel_3a_xl")
 @Composable
 fun TimestampPreview() {
-    Timestamp()
 }
 

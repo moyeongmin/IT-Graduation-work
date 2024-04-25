@@ -7,4 +7,5 @@
     <string name="hello_world">From the Square world,\nHello, %1$s!</string>
     <string name="title_activity_mainpage">mainpage</string>
     <string name="title_activity_bus_subway_choose">Bus_Subway_Choose</string>
+    <string name="title_activity_bus_main">Bus_main</string>
 </resources>
