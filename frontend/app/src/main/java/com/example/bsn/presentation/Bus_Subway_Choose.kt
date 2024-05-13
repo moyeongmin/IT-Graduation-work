@@ -1,5 +1,6 @@
 package com.example.bsn.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,11 +26,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+import com.example.bsn.presentation.Bus.Bus_main
 import com.example.bsn.presentation.ui.CustomImageButton
 import com.example.bsn.presentation.ui.theme.BS_Choose_Theme
 import com.example.bsn.presentation.ui.theme.BsnTheme
@@ -56,6 +59,7 @@ class Bus_Subway_Choose : ComponentActivity() {
 
 @Composable
 fun BS_Choose_mainpage(name: String, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     Scaffold(
         containerColor = Color.Black,
         content = { paddingValues ->
@@ -95,7 +99,7 @@ fun BS_Choose_mainpage(name: String, modifier: Modifier = Modifier) {
                                       color = Color.Black
                                   )
                         },
-                        onClick = { /*TODO*/ })
+                        onClick = {val I = Intent(context,Bus_main::class.java); context.startActivity(I) })
 
                 }
                 item {

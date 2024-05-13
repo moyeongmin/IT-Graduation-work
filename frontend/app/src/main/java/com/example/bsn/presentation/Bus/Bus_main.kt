@@ -2,7 +2,9 @@ package com.example.bsn.presentation.Bus
 
 import android.annotation.SuppressLint
 import android.content.ClipData.Item
+import android.content.Intent
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.clickable
@@ -33,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -78,6 +81,7 @@ fun Bus_mainpage(modifier: Modifier = Modifier) {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Bus_station(navController: NavController){
+    val context = LocalContext.current
     var query by rememberSaveable { mutableStateOf("") }
     var active by rememberSaveable { mutableStateOf(false) }
 
@@ -113,7 +117,12 @@ fun Bus_station(navController: NavController){
                     leadingIcon = { Icon(Icons.Filled.MoreVert, contentDescription = "검색") },
                     trailingIcon = { Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.mic_svg),
-                        contentDescription = "음성 녹음", Modifier.clickable { /*녹음 로직*/}) },
+                        contentDescription = "음성 녹음", Modifier.clickable {
+                        val I = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply{
+                            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                        }
+
+                        }) },
                     content = {
 
                     }
@@ -142,7 +151,9 @@ fun Bus_drop(navController: NavController)
 {
 
 }
+fun displaySpeechRecognizer(){
 
+}
 @Preview(showBackground = true, device = "spec:width=384px,height=500px,dpi=320,isRound=true")
 @Composable
 fun GreetingPreview3() {
