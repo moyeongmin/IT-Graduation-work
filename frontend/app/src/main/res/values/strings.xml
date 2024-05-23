@@ -8,4 +8,6 @@
     <string name="title_activity_mainpage">mainpage</string>
     <string name="title_activity_bus_subway_choose">Bus_Subway_Choose</string>
     <string name="title_activity_bus_main">Bus_main</string>
+    <string name="title_activity_is_transfer">Is_Transfer</string>
+    <string name="title_activity_subway_main">Subway_main</string>
 </resources>
