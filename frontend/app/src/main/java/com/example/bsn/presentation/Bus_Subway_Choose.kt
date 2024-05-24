@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
 import com.example.bsn.presentation.Bus.Bus_main
+import com.example.bsn.presentation.Subway.Subway_main
 import com.example.bsn.presentation.ui.CustomImageButton
 import com.example.bsn.presentation.ui.theme.BS_Choose_Theme
 import com.example.bsn.presentation.ui.theme.BsnTheme
@@ -122,7 +123,8 @@ fun BS_Choose_mainpage(name: String, modifier: Modifier = Modifier) {
                                 color = Color.Black
                             )
                         },
-                        onClick = { /*TODO*/ })
+                        onClick = { val i = Intent(context,Subway_main::class.java)
+                        context.startActivity(i)})
 
                 }
             }

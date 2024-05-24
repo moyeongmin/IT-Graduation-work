@@ -65,7 +65,7 @@ fun MainPage() {
                 contentPadding = PaddingValues(bottom = 10.dp)
             ) {
                 item {
-                    val username = "김세훈" // 유저 이름 받아오기
+                    val username = "모영민" // 유저 이름 받아오기
                     Text(text = "${username}님, 반갑습니다!",
                         color = Color.White,
                         style = TextStyle(

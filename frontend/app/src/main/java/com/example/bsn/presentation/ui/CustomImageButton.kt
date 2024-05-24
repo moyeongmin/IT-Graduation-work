@@ -45,7 +45,7 @@ fun CustomImageButton(
     heightratio: Float = 1.5f,
     text : String?,
     textsize : TextUnit,
-    key : Int
+    key : Int = 0
     ) {
     var isPressed by remember(key) { mutableStateOf(false) }
     val valpha = if (isPressed) 0.8f else 1.0f
