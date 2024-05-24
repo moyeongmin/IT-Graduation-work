@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.wear.compose.foundation.lazy.ScalingLazyColumn
+import com.example.bsn.R
 import com.example.bsn.presentation.Bus.Bus_main
 import com.example.bsn.presentation.Subway.Subway_main
 import com.example.bsn.presentation.ui.CustomImageButton
@@ -68,8 +69,8 @@ fun BS_Choose_mainpage(name: String, modifier: Modifier = Modifier) {
             ScalingLazyColumn(
                 modifier = Modifier
                     .padding(paddingValues)
-                    .padding(top = 30.dp)
-                    .fillMaxHeight(0.9f)
+                    .padding(top = 20.dp)
+                    .fillMaxHeight()
                     .fillMaxWidth(1f),
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -83,49 +84,40 @@ fun BS_Choose_mainpage(name: String, modifier: Modifier = Modifier) {
                     Spacer(modifier = Modifier.padding(bottom = 18.dp))
                 }
                 item{
-                    Button(
-
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .aspectRatio(3.2f),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF87CEEB),
-                            disabledContainerColor = Color(0xCC000000),
-                            disabledContentColor =Color.Transparent
-                        ),
-                        content = {
-                                  Text(text = "버스",
-                                      textAlign = TextAlign.Center,
-                                      fontSize = 14.sp,
-                                      color = Color.Black
-                                  )
+                    CustomImageButton(//버스
+                        defaultImagePainter = R.drawable.subway_btn_frame,
+                        contentDescription = "optionsbtn",
+                        onClick = {
+                            val I = Intent(context,Bus_main::class.java)
+                            context.startActivity(I)
                         },
-                        onClick = {val I = Intent(context,Bus_main::class.java); context.startActivity(I) })
-
+                        widthratio = 0.9f,
+                        heightratio = 4f,
+                        text = "버스",
+                        textsize = 14.sp,
+                        modifier = Modifier,
+                        align = Alignment.Center
+                    )
                 }
+
                 item {
-                    Spacer(modifier = Modifier.padding(10.dp))
+                    Spacer(modifier = Modifier.padding(5.dp))
                 }
                 item{
-                    Button(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .aspectRatio(3.1f),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF87CEEB),
-                            disabledContainerColor = Color(0xCC000000),
-                            disabledContentColor =Color.Transparent
-                        ),
-                        content = {
-                            Text(text = "지하철",
-                                textAlign = TextAlign.Center,
-                                fontSize = 14.sp,
-                                color = Color.Black
-                            )
-                        },
-                        onClick = { val i = Intent(context,Subway_main::class.java)
-                        context.startActivity(i)})
-
+                    CustomImageButton(//지하철
+                        defaultImagePainter = R.drawable.subway_btn_frame,
+                        contentDescription = "optionsbtn",
+                        onClick = {
+                            val i = Intent(context,Subway_main::class.java)
+                            context.startActivity(i)
+                             },
+                        widthratio = 0.9f,
+                        heightratio = 4f,
+                        text = "지하철",
+                        textsize = 14.sp,
+                        modifier = Modifier,
+                        align = Alignment.Center
+                    )
                 }
             }
         })

@@ -30,6 +30,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -45,7 +46,8 @@ fun CustomImageButton(
     heightratio: Float = 1.5f,
     text : String?,
     textsize : TextUnit,
-    key : Int = 0
+    key : Int = 0,
+    align : Alignment = Alignment.CenterStart
     ) {
     var isPressed by remember(key) { mutableStateOf(false) }
     val valpha = if (isPressed) 0.8f else 1.0f
@@ -90,10 +92,10 @@ fun CustomImageButton(
                 color = { Color.White },
                 style = TextStyle(
                     fontSize = textsize,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Bold
                 ),
                 modifier = Modifier
-                    .align(Alignment.CenterStart)
+                    .align(align)
                     .padding(start = 5.dp)
             )
         }

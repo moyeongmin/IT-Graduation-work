@@ -37,7 +37,6 @@ class Is_Transfer : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
                     Ques_to_transfer()
-
         }
     }
 }

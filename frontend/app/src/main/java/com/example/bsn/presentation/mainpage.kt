@@ -83,7 +83,7 @@ fun MainPage() {
                                   context.startActivity(i)},
                         widthratio = 1f,
                         heightratio = 4f,
-                        text = "출근 설정",
+                        text = "출근 경로 설정",
                         textsize = 12.sp,
                         key = 1)
                 }
@@ -94,7 +94,7 @@ fun MainPage() {
                         onClick = { /*TODO*/ },
                         widthratio = 1f,
                         heightratio = 4f,
-                        text = "퇴근 설정",
+                        text = "퇴근 경로 설정",
                         textsize = 12.sp,
                         key = 2)
                 }
@@ -102,10 +102,11 @@ fun MainPage() {
                     CustomImageButton(//옵션 페이지로 이동
                         defaultImagePainter = R.drawable.mainpage_options,
                         contentDescription = "optionsbtn",
-                        onClick = { /*TODO*/ },
+                        onClick = { val i = Intent(context,Choose_Time::class.java)
+                                  context.startActivity(i)},
                         widthratio = 1f,
                         heightratio = 4f,
-                        text = "옵션",
+                        text = "출퇴근 시간 설정",
                         textsize = 12.sp,
                         key = 3)
                 }

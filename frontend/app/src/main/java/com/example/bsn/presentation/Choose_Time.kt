@@ -1,5 +1,6 @@
 package com.example.bsn.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,6 +17,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -28,7 +31,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,6 +42,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.wear.compose.material.Picker
+import androidx.wear.compose.material.rememberPickerState
+import com.example.bsn.R
 import com.example.bsn.presentation.ui.theme.BsnTheme
 
 
@@ -74,10 +83,13 @@ fun Announce_page(navController : NavController ) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "출근 시간을 선택해주세요!",
+            text = "출근 시간을\n\n선택해주세요!",
             color = Color.White,
-            fontSize = 18.sp,
-            modifier = Modifier.padding(bottom = 16.dp)
+            fontWeight = FontWeight(700),
+            fontSize = 20.sp,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .padding(bottom = 16.dp)
         )
         Button(
             onClick = { navController.navigate("timepickers") },
@@ -87,7 +99,7 @@ fun Announce_page(navController : NavController ) {
                 .clip(CircleShape)
                 .background(Color(0xFF8EBBFF))
         ) {
-            Text(text = "다음", color = Color.White)
+            Text(text = "다음", color = Color.Black, fontWeight = FontWeight(600))
         }
 
     }
@@ -96,6 +108,8 @@ fun Announce_page(navController : NavController ) {
 fun TimePicker(navController: NavController) {
     var hour by remember { mutableStateOf(0) }
     var minute by remember { mutableStateOf(0) }
+    val hourState = rememberPickerState(initialNumberOfOptions = 24, initiallySelectedOption = hour)
+    val minuteState = rememberPickerState(initialNumberOfOptions = 60, initiallySelectedOption = minute)
 
     Column(
         modifier = Modifier
@@ -105,21 +119,28 @@ fun TimePicker(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Hour",
+            text = "시간을 선택하세요",
             color = Color.White,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 8.dp)
+            modifier = Modifier.padding(top = 15.dp,bottom = 8.dp)
         )
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center,
             modifier = Modifier.padding(bottom = 16.dp)
         ) {
-            NumberPicker(
-                value = hour,
-                onValueChange = { hour = it },
-                range = 0..23
+            Picker(
+                state = hourState,
+                contentDescription = "Hour Picker",
+                modifier = Modifier.size(100.dp),
+                option = { optionIndex ->
+                    Text(
+                        text = optionIndex.toString().padStart(2, '0'),
+                        color = Color(0xFFFDE293),
+                        fontSize = 50.sp
+                    )
+                }
             )
             Text(
                 text = ":",
@@ -127,21 +148,37 @@ fun TimePicker(navController: NavController) {
                 fontSize = 24.sp,
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
-            NumberPicker(
-                value = minute,
-                onValueChange = { minute = it },
-                range = 0..59
+            Picker(
+                state = minuteState,
+                contentDescription = "Minute Picker",
+                modifier = Modifier.size(100.dp),
+                option = { optionIndex ->
+                    Text(
+                        text = optionIndex.toString().padStart(2, '0'),
+                        color = Color.White,
+                        fontSize = 50.sp
+                    )
+                }
             )
         }
-        Button(
-            onClick = { navController.navigate("nextScreen") },
+        IconButton(
+            onClick = {
+                //출퇴근 시간 저장 및 통신
+                hour = hourState.selectedOption
+                minute = minuteState.selectedOption
+
+            },
             modifier = Modifier
-                .padding(top = 16.dp)
-                .align(Alignment.CenterHorizontally)
+                .size(50.dp)
                 .clip(CircleShape)
-                .background(Color(0xFF8EBBFF))
+                .background(Color(0xFFAECBFA))
         ) {
-            Text(text = "완료", color = Color.White)
+            Icon(
+                painter = painterResource(id = R.drawable.yes_mark),
+                contentDescription = "Yes",
+                tint = Color.Black,
+                modifier = Modifier.size(36.dp)
+            )
         }
     }
 }
