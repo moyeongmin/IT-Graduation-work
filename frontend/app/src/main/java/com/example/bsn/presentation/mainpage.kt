@@ -76,10 +76,11 @@ fun MainPage() {
                     Spacer(modifier = Modifier.padding(bottom = 30.dp))
                 }
                 item {
-                    CustomImageButton(//출근 설정으로 이동
+                    CustomImageButton(//출근 경로 설정으로 이동
                         defaultImagePainter = R.drawable.mainpage_gotowork,
                         contentDescription = "goroworkbtn",
-                        onClick = { val i = Intent(context,Bus_Subway_Choose::class.java)
+                        onClick = { val i = Intent(context,Route_Edit::class.java)
+                            i.putExtra("출퇴근",0)
                                   context.startActivity(i)},
                         widthratio = 1f,
                         heightratio = 4f,
@@ -88,10 +89,12 @@ fun MainPage() {
                         key = 1)
                 }
                 item {
-                    CustomImageButton(//퇴근 설정으로 이동
+                    CustomImageButton(//퇴근 경로 설정으로 이동
                         defaultImagePainter = R.drawable.mainpage_comebackhome,
                         contentDescription = "comebackhomebtn",
-                        onClick = { /*TODO*/ },
+                        onClick = { val i = Intent(context,Route_Edit::class.java)
+                            i.putExtra("출퇴근",1)
+                            context.startActivity(i) },
                         widthratio = 1f,
                         heightratio = 4f,
                         text = "퇴근 경로 설정",

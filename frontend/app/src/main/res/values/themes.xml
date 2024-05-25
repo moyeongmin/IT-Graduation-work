@@ -3,5 +3,7 @@
 
     <style name="DeviceDefault" parent="@android:style/Theme.Material.Light.NoActionBar" />
 
+    <style name="@android:style/Theme.DeviceDefault" parent="android:Theme.Material.Light.NoActionBar" />
+
 
 </resources>

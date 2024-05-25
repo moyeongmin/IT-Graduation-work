@@ -11,4 +11,5 @@
     <string name="title_activity_is_transfer">Is_Transfer</string>
     <string name="title_activity_subway_main">Subway_main</string>
     <string name="title_activity_choose_time">Choose_Time</string>
+    <string name="title_activity_route_edit">Route_Edit</string>
 </resources>

@@ -12,17 +12,20 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
         <activity
+            android:name=".presentation.Route_Edit"
+            android:exported="false"
+            android:label="@string/title_activity_route_edit"
+            android:theme="@android:style/Theme.DeviceDefault" />
+        <activity
             android:name=".presentation.Choose_Time"
             android:exported="false"
             android:label="@string/title_activity_choose_time"
-            android:theme="@android:style/Theme.DeviceDefault" >
-
-        </activity>
+            android:theme="@android:style/Theme.DeviceDefault"></activity>
         <activity
             android:name=".presentation.Subway.Subway_main"
             android:exported="true"
             android:label="@string/title_activity_subway_main"
-            android:theme="@android:style/Theme.DeviceDefault"></activity>
+            android:theme="@android:style/Theme.DeviceDefault" />
         <activity
             android:name=".presentation.Is_Transfer"
             android:exported="false"
@@ -62,9 +65,9 @@
             android:theme="@style/MainActivityTheme.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
