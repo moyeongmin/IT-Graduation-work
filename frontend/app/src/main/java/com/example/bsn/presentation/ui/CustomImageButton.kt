@@ -1,16 +1,13 @@
 package com.example.bsn.presentation.ui
 
-import android.graphics.drawable.Drawable
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
@@ -22,19 +19,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorProducer
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import kotlin.reflect.typeOf
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun CustomImageButton(
@@ -44,10 +37,12 @@ fun CustomImageButton(
     modifier: Modifier = Modifier,
     widthratio: Float = 1f,
     heightratio: Float = 1.5f,
-    text : String?,
-    textsize : TextUnit,
-    key : Int = 0,
-    align : Alignment = Alignment.CenterStart
+    text: String?,
+    textsize: TextUnit,
+    key: Int = 0,
+    titletext: String? = null,
+    titletextsize: TextUnit = 14.sp,
+    align: Alignment = Alignment.CenterStart
     ) {
     var isPressed by remember(key) { mutableStateOf(false) }
     val valpha = if (isPressed) 0.8f else 1.0f
@@ -87,17 +82,50 @@ fun CustomImageButton(
         )
         // Text가 null이 아닐 때만 Text 표시
         text?.let {
-            BasicText(
-                text = it,
-                color = { Color.White },
-                style = TextStyle(
-                    fontSize = textsize,
-                    fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier
-                    .align(align)
-                    .padding(start = 5.dp)
-            )
+
+            if(titletext == null) {
+                BasicText(
+                    text = it,
+                    color = { Color.White },
+                    style = TextStyle(
+                        fontSize = textsize,
+                        fontWeight = FontWeight.Bold
+                    ),
+                    modifier = Modifier
+                        .align(align)
+                        .padding(start = 5.dp)
+                )
+            }
+            else {
+                Column(
+                    modifier = Modifier.align(align).padding(top = 15.dp),
+                    verticalArrangement = Arrangement.Top,
+                    horizontalAlignment = Alignment.Start
+                        )
+                {
+                    BasicText(
+                        text = titletext,
+                        color = {Color.White},
+                        style = TextStyle(
+                            fontSize = titletextsize,
+                            fontWeight = FontWeight.Bold
+                        ),
+                        modifier = Modifier
+                            .padding(start = 5.dp, bottom = 10.dp)
+                    )
+                    BasicText(
+                        text = text,
+                        color = {Color.White},
+                        style = TextStyle(
+                            fontSize = textsize,
+                            fontWeight = FontWeight.Bold
+                        ),
+                        modifier = Modifier
+                            .padding(start = 5.dp)
+                    )
+
+                }
+            }
         }
     }
 }

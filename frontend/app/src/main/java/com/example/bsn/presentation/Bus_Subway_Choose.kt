@@ -7,18 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -38,7 +31,6 @@ import com.example.bsn.presentation.Subway.Subway_main
 import com.example.bsn.presentation.ui.CustomImageButton
 import com.example.bsn.presentation.ui.theme.BS_Choose_Theme
 import com.example.bsn.presentation.ui.theme.BsnTheme
-import java.time.format.TextStyle
 
 class Bus_Subway_Choose : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
