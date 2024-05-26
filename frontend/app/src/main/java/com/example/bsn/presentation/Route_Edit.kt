@@ -27,6 +27,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -190,52 +192,63 @@ fun Route_mainpage(navController: NavController , type : Int){//0이면 출근,1
 }
 
 @Composable
-fun Route_detail(navController: NavController){
+fun Route_detail(navController: NavController) {
     val context = LocalContext.current
     //루트 메인 페이지에서 선택한 루트의 디테일 표시
-    var routes by remember { mutableStateOf(listOf("1008번", "24번", "33번","21번")) }
+    var routes by remember { mutableStateOf(listOf("1008번", "24번", "33번", "21번")) }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(
-            text = "루트 1",
-            color = Color.White,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(16.dp)
-        )
-        for (route in routes) {
-            Route_Box(
-                route = route,
-                onDelete = { routes = routes.filter { it != route } }
-            )
-            Spacer(modifier = Modifier.height(10.dp))
+    Scaffold(
+        containerColor = Color.Black,
+        content = { paddingValues ->
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .background(Color.Black)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Top,
+                contentPadding = PaddingValues(bottom = 16.dp)
+            ) {
+                item {
+                    Text(
+                        text = "루트 1",
+                        color = Color.White,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
+                }
+                items(routes) { route ->
+                    Route_Box(
+                        route = route,
+                        onDelete = { routes = routes.filter { it != route } }
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+                }
+                item {
+                    IconButton(
+                        onClick = {//추가 버튼 클릭 시 버스 지하철 선택으로 이동
+                            val i = Intent(context, Bus_Subway_Choose::class.java)
+                            context.startActivity(i)
+                        },
+                        modifier = Modifier
+                            .padding(top = 10.dp)
+                            .clip(CircleShape)
+                            .background(Color(0xFFAECBFA))
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.plus_mark),
+                            contentDescription = "Plus_mark",
+                            tint = Color.White,
+                            modifier = Modifier.size(10.dp)
+                        )
+                    }
+                }
+            }
         }
-        IconButton(
-            onClick = {//추가 버튼 클릭 시 버스 지하철 선택으로 이동
-                val i = Intent(context,Bus_Subway_Choose::class.java)
-                context.startActivity(i)
-            },
-            modifier = Modifier
-                .padding(top = 15.dp)
-                .clip(CircleShape)
-                .background(Color(0xFFAECBFA))
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.plus_mark),
-                contentDescription = "Plus_mark",
-                tint = Color.White,
-                modifier = Modifier.size(20.dp)
-            )
-        }
-    }
+    )
 }
-
 fun get_route(Type : Int){
     when(Type){
         0 ->{}//출근 경로 데이터 받아오기
